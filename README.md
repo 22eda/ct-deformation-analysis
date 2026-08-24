@@ -41,6 +41,8 @@ This repository provides a complete, reproducible pipeline to calculate, process
 To validate the computed deformation fields, results are rendered interactively in 3D. The visualization combines the baseline anatomical CT scan with vector arrows representing magnitude and direction of tissue displacement.
 
 <img width="722" height="574" alt="deformasyon" src="https://github.com/user-attachments/assets/864575e5-dfe0-4039-a999-9314e96bca67" />
+
+
 *Figure: Inter-fractional deformation vectors visualized over patient CT slices using napari.*
 
 ---
