@@ -51,3 +51,5 @@ To validate the computed deformation fields, results are rendered interactively 
 * **Batch Cohort Processing:** Scale the pipeline to automatically process multi-patient datasets rather than single-patient prototypes.
 * **Deep Learning Integration:** Feed calculated displacement fields and pre-processed temporal CT data into deep learning architectures (such as Flow Matching or neural network models) to predict future anatomical deformations before treatment delivery.
 * **Clinical Metrics Automation:** Automate the calculation of dosimetric impact and target volume shifts (CTV/PTV margins) directly from the deformation outputs.
+
+Author: Edanur Demirel
