@@ -1,0 +1,4 @@
+myenv/
+results/
+*.out
+*.err
