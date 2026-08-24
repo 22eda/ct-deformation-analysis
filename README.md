@@ -1,13 +1,13 @@
 # CT Deformation Analysis Pipeline
 
-## 📌 Project Overview
+##  Project Overview
 Accurate anatomical alignment and deformation tracking are critical in **Robust Radiotherapy Planning**. Patient anatomy changes between treatment fractions due to factors like weight fluctuations, organ motion, and tumor shrinkage. 
 
 This repository provides a complete, reproducible, and automated pipeline to calculate, process, and visualize inter-fractional displacement and deformation fields across multi-patient datasets (using Fraction 1 as the reference/fixed scan against all subsequent fractions).
 
 ---
 
-## 📂 Repository Structure & File Breakdown
+##  Repository Structure & File Breakdown
 
 ### 1. `calculate_deformation.py`
 * **Purpose:** The core computational script designed for **Batch Cohort Processing**. It utilizes **SimpleITK** and `glob` to automatically iterate through all patient directories, load NIfTI-formatted CT scans (`.nii.gz`), perform demons registration, compute dense spatial displacement fields, and export the results.
@@ -36,7 +36,7 @@ This repository provides a complete, reproducible, and automated pipeline to cal
 
 ---
 
-## 📊 Results & Visualization
+##  Results & Visualization
 
 To validate the computed deformation fields, results are rendered interactively in 3D. The visualization combines the baseline anatomical CT scan with vector arrows representing magnitude and direction of tissue displacement.
 
@@ -47,6 +47,6 @@ To validate the computed deformation fields, results are rendered interactively 
 
 ---
 
-## 🚀 Future Goals & Next Steps
+##  Future Goals & Next Steps
 * **Deep Learning Integration:** Feed calculated displacement fields and pre-processed temporal CT data into deep learning architectures (such as Flow Matching or neural network models) to predict future anatomical deformations before treatment delivery.
 * **Clinical Metrics Automation:** Automate the calculation of dosimetric impact and target volume shifts (CTV/PTV margins) directly from the deformation outputs.
