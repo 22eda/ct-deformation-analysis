@@ -21,7 +21,8 @@ This repository contains code to (1) compute inter-fractional deformation fields
 | Diagnostics | `debug/` | Scripts used to check labels, alignment and displacement magnitudes. |
 
 ## Visualization of the Demons Fields
-<img width="1088" height="659" alt="15" src="https://github.com/user-attachments/assets/4e37f807-3bde-443f-87b1-cdb805380b94" />
+
+<img width="722" height="574" alt="27" src="https://github.com/user-attachments/assets/43684d29-954c-41a6-b055-5afb5d19cfd9" />
 
 *Figure: Inter-fractional deformation vectors visualized over patient CT slices using napari.*
 
