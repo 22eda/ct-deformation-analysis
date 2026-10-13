@@ -2,3 +2,21 @@ myenv/
 results/
 *.out
 *.err
+
+# data and large outputs
+cache/
+generated_variants/
+inference_results*/
+evaluation_results/
+figures/
+myenv/
+__pycache__/
+*.pth
+*.pt
+*.npy
+*.nii
+*.nii.gz
+*.tar.gz
+*.out
+*.err
+*.log

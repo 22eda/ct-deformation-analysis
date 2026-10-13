@@ -50,3 +50,34 @@ To validate the computed deformation fields, results are rendered interactively 
 ##  Future Goals & Next Steps
 * **Deep Learning Integration:** Feed calculated displacement fields and pre-processed temporal CT data into deep learning architectures (such as Flow Matching or neural network models) to predict future anatomical deformations before treatment delivery.
 * **Clinical Metrics Automation:** Automate the calculation of dosimetric impact and target volume shifts (CTV/PTV margins) directly from the deformation outputs.
+
+---
+
+## Update (October 2026): DDF prediction, variant generation and evaluation
+
+Patient data is NOT included in this repository.
+
+### Pipeline
+1. `calculate_deformation.py`: Demons registration, fraction 1 -> fraction n (training targets). Current settings: 15 iterations, single scale.
+2. `make_split.py` -> `patient_split.json`: patient-level split (39 train / 10 test, seed 42).
+3. `train.py` (+ `dataset.py`, `model.py`, `train.slurm`): 3D U-Net with dropout 0.2, MSE loss, mixed precision, 15 epochs, train patients only.
+4. `generate_variants.py` (+ `generate_all.slurm`): 10 MC-dropout passes on the planning CT, inversion of each predicted field, warping of CT (linear) and segmentation (nearest neighbour).
+5. `metrics_light.py`: gDice, ADICE, GED vs. real fractions (prostate, bladder, femoral heads). `metrics_baseline.py`: same metrics for the unchanged planning mask repeated 10 times.
+6. `viz_probmaps.py`, `viz_summary.py`: figures. `debug/`: diagnostic scripts.
+
+### Results (10 held-out test patients, mean)
+| Structure | gDice | ADICE | GED |
+|---|---|---|---|
+| Prostate | 0.867 | 0.810 | 0.346 |
+| Bladder | 0.923 | 0.898 | 0.207 |
+| Femoral heads | 0.879 | 0.807 | 0.314 |
+
+A no-deformation baseline scores almost identically, and the generated variants differ from the planning segmentation in only about 0.02% of voxels. So the model does not yet generate meaningful anatomical variability.
+
+### Known limitations
+- Predicted displacements are about 0.5 mm on average vs. about 1.4 mm in the targets (measured on an earlier model trained on all 49 patients; not yet repeated on the final train/test model).
+- Demons targets use 15 iterations at a single scale.
+- Single train/test split, no cross-validation, no two-phase dropout training.
+- No rectum label in the data. The label mapping (1 = body, 2 and 3 = femoral heads, 4 = prostate, 5 = bladder) was inferred from volumes and positions and is not confirmed.
+- No dosimetric validation.
+- Paths and Slurm account/partition are specific to the Athena cluster.
