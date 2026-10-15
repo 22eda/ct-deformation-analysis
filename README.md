@@ -51,3 +51,18 @@ A no-deformation baseline scores almost identically, and the generated variants 
 - Cross-validation instead of a single split.
 - Dosimetric validation (mean dose and dose uncertainty maps), if in scope.
 - Longer term: alternative generative models (e.g. latent diffusion or flow matching).
+- 
+I also computed a no-deformation baseline, which is the planning mask copied 10 times. It scores almost identically: prostate 0.867 / 0.810 / 0.346.
+
+The variants differ from the planning segmentation in only about 0.02% of voxels. So the model does not yet generate meaningful anatomical variability. The pipeline works end to end, but the content is not there yet.
+
+The predicted displacement is about 0.5 mm, while the targets are about 1.4 mm. I measured this on the first model, and I have not repeated it on the final model yet.
+
+My hypotheses are:
+
+MSE loss regresses to the mean.
+My Demons targets are weak: 15 iterations, single scale.
+Dropout alone gives low diversity.
+
+I have not proven any of these yet.”
+  
